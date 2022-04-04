@@ -1,0 +1,64 @@
+{
+  "ErrorHandler": {
+    "badRequest_400": "Der Server kann die gesendete Anfrage nicht verarbeiten",
+    "unauthorized_401": "Eine Authentifizierung ist erforderlich, bitte überprüfen Sie den Benutzernamen und das Passwort",
+    "forbidden_403": "Der Zugriff auf die angeforderte Ressource ist nicht erlaubt",
+    "NotFound_404": "Der Server kann die angeforderte Ressource nicht finden",
+    "internalServerError_500": "Auf dem Server ist ein Fehler aufgetreten. Wir werden das Problem sehr bald beheben",
+    "passwordsMatch": "Die Passwörter stimmen nicht überein",
+    "organisation_id_is_required": "Please select an organisation",
+    "procedure_id_is_required": "Please select a procedure",
+    "procedure_analysis_disabled": "Analysis feature is disabled for this procedure",
+    "no_date_range": "Datumsbereich für dieses Verfahren kann nicht abgerufen werden",
+    "no_document_date": "Dieses Verfahren hat kein Dokumentdatum! Bitte importieren Sie es erneut korrekt",
+    "no_application_date": "This Procedure has no application date! please re-import it correctly",
+    "no_due_date": "Dieses Verfahren hat kein Belegdatum! Bitte importieren Sie es erneut korrekt",
+    "invalid_key": "Ungültiger Schlüssel!",
+    "no_template_selected": "Bitte wählen Sie ein Template und andere Felder aus!",
+    "no_file_selected": "Bitte wählen Sie eine zu importierende Datei aus",
+    "invalid_file_type": "Ungültiger Dateityp, bitte wählen Sie eine CSV- oder Excel-Datei aus",
+    "invalid_file_class": "Ungültige Dateiklasse",
+    "Please_Contact_Developer": "There is something went wrong, Please Contact Developer!"
+  },
+  "general_actions": {
+    "add": "hinzufügen",
+    "edit": "bearbeiten",
+    "delete": "Löschen",
+    "print": "Print",
+    "reset": "zurücksetzen"
+  },
+  "general_messages": {
+    "update_success": "Erfolgreich bearbeitet !",
+    "create_success": "Erfolgreich erstellt!",
+    "done": "Fertig.",
+    "delete_success": "Erfolgreich gelöscht!"
+  },
+  "confirm_messages": {
+    "r_u_sure": "Bist du sicher? drücken Sie 'ja' um fortzufahren",
+    "yes": "Ja",
+    "cancel": "Abbrechen",
+    "update": "aktualisieren Bestätigung",
+    "delete": "löschen Bestätigung",
+    "body_update": "Möchten Sie wirklich aktualisieren?",
+    "body_delete": "Sind Sie sicher, dass Sie löschen möchten? Gelöschte Daten sind nicht wiederherstellbar! Drücken Sie 'JA' um fortzufahren, 'NEIN' um abzubrechen."
+  },
+  "LOGIN": {
+    "welcomeMsg": "Bitte loggen Sie sich ein",
+    "welcomeWord": "Willkommen bei Venalytics!",
+    "passwordPlaceholder": "Passwort",
+    "loginButton": "Login",
+    "passowrdForgetLink": "Passwort vergessen?"
+  },
+  "sideBarMenu": {
+    "setting": "Einstellung",
+    "logout": "Logout"
+  },
+  "Admin_Import": {
+  },
+  "Notfound": {
+    "errorMsg": "Sorry, die Seite ist nicht vorhanden"
+  },
+  "Unauth": {
+    "errorMsg": "Sorry, Sie haben keine Berechtigung"
+  }
+}

@@ -1,0 +1,58 @@
+<div>
+  <div>
+    <p-menubar [model]="menuItems">
+      <ng-template pTemplate="start">
+        <img id="logo" src="assets/logo.jpg" height="60" width="75" class="p-mr-6" style="border: hidden" />
+        <p-button icon="pi pi-bars" styleClass="sidebar-button" class="p-button-raised p-button-outlined"
+          (click)="getSideBarItems()"></p-button>
+      </ng-template>
+      <ng-template pTemplate="end">
+        <div class="p-formgroup-inline" >
+          <div class="p-field">
+            <select #langSelect (change)="_translateService.use(langSelect.value)" class="
+                layout-topbar-action
+                p-d-flex p-dir-row p-jc-center p-ai-center p-px-2
+                rounded-circle
+                ng-tns-c186-0
+                p-ripple
+              " style="
+                height: 60px;
+                background-color: #58585a;
+                color: #ffffff;
+                border: none;
+              " [(ngModel)]="browserLang">
+              <option *ngFor="let lang of _translateService.getLangs(); index as i" value="{{ lang }}">
+                {{ lang | uppercase }}
+              </option>
+            </select>
+          </div>
+          <div class="p-field">
+            <a pripple class="
+                layout-topbar-action
+                p-d-flex p-dir-row p-jc-center p-ai-center p-px-2
+                rounded-circle
+                ng-tns-c186-0
+                p-ripple
+              ">
+              <img src="assets/profile.png" style="
+                  width: 60px;
+                  height: 60px;
+                  background-color: none;
+                  color: none;
+                " class="p-mr-2" (click)="menu.toggle($event)" />
+              <span class="p-link"></span>
+            </a>
+            <p-menu #menu [popup]="true" [model]="userPages"></p-menu>
+          </div>
+        </div>
+      </ng-template>
+      
+    </p-menubar>
+  </div>
+  <div>
+    <p-sidebar [(visible)]="sideBarShow" class="sideBarWidth" [showCloseIcon]="false">
+      <h2 style="font-weight: lighter" class="p-text-center">{{ username }}</h2>
+      <p-menu #menu [model]="sidebarItems" [style]="{ width: '300px', border: 'none' }"></p-menu>
+    </p-sidebar>
+  </div>
+</div>

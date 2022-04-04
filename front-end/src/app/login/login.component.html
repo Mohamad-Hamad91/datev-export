@@ -1,0 +1,53 @@
+<div class="cardBody">
+  <p-toast></p-toast>
+
+  <div class="p-grid p-mt-6 ">
+
+    <div class="p-xs-10 p-xs-offset-1 p-md-4 p-md-offset-4   content">
+      <div class="pages-body login-page p-d-flex p-flex-column">
+        <div class="p-as-center p-mt-auto p-mb-auto">
+          <div class="pages-panel card p-d-flex p-flex-column">
+            <div class="pages-header p-px-3 p-py-1 loginLogoCss">
+              <img src="assets/logo.jpg" height="100" width="100">
+            </div>
+            <h3 class="fontStyle"> {{'LOGIN.welcomeWord' | translate}} </h3>
+            <div class="pages-detail p-mb-6 p-px-6 fontStyle"> {{'LOGIN.welcomeMsg' | translate}}</div>
+            <div class="input-panel p-d-flex p-flex-column p-px-3">
+              <form (ngSubmit)="login()">
+                <div class="p-inputgroup ">
+                  <span class="p-inputgroup-addon">
+                    <i class="pi pi-envelope"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input name="username" id="email" type="text" pinputText [(ngModel)]="username" name="username" 
+                      class="p-inputtext p-component p-filled" placeholder="Email" autofocus>
+                  </span>
+                </div>
+                <div class="p-inputgroup p-mt-5 p-mb-6 ">
+                  <span class="p-inputgroup-addon">
+                    <i class="pi pi-lock"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input name="password" id="password" type="password" pinputText [(ngModel)]="password"
+                      class="p-inputtext p-component p-filled"
+                      placeholder="{{'LOGIN.passwordPlaceholder' | translate}}">
+
+                  </span>
+                </div>
+                <button pButton type="submit" label="{{'LOGIN.loginButton' | translate}}"
+                  class=" fontStyle p-button-raised p-button-rounded buttonCss p-mb-4 p-px-3 p-button p-component p-ripple login-button"
+                  ></button>
+              </form>
+            </div>
+            <a class="linkCss p-mb-4 fontStyle"> {{'LOGIN.passowrdForgetLink' | translate}}</a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

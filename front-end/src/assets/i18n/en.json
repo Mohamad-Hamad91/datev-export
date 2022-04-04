@@ -1,0 +1,64 @@
+{
+  "ErrorHandler": {
+    "incorrect_username_or_password": "The username or password is incorrect",
+    "badRequest_400": "hTe server is unable to process the sent request",
+    "unauthorized_401": "Authentication is required, please check the username and password",
+    "forbidden_403": "The access to the requested resource is forbidden",
+    "notFound_404": "Server cannot find the requested resource !",
+    "internalServerError_500": "Something went wrong on the server , we will fix the problem very soon",
+    "passwordsMatch": "The password don't match",
+    "organisation_id_is_required": "Please select an organisation",
+    "procedure_id_is_required": "Please select a procedure",
+    "procedure_analysis_disabled": "Analysis feature is disabled for this procedure",
+    "no_date_range": "Can't get date range for this procedure",
+    "no_document_date": "This Procedure has no document date! please re-import it correctly",
+    "no_application_date": "This Procedure has no application date! please re-import it correctly",
+    "no_due_date": "This Procedure has no due date! please re-import it correctly",
+    "invalid_key": "Invalid key!",
+    "no_template_selected": "Please select a Template and other fields!",
+    "no_file_selected": "Please select a file to import",
+    "invalid_file_type": "Invalid File Type, please selce a CSV or excel file",
+    "invalid_file_class": "Invalid File Class",
+    "Please_Contact_Developer": "There is something went wrong, Please Contact Developer!"
+  },
+  "general_actions": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "print": "Print",
+    "reset": "Reset"
+  },
+  "general_messages": {
+    "update_success": "updated successfully!",
+    "create_success": "Created successfully!",
+    "done": "Done.",
+    "delete_success": "Deleted successfully!",
+    "canceled": "Canceled!"
+  },
+  "confirm_messages": {
+    "r_u_sure": "Are You Sure? press yes to proceed",
+    "yes": "Yes",
+    "cancel": "Cancel",
+    "update": "Update Confirmation",
+    "delete": "Delete Confirmation",
+    "body_update": "Are You sure you want to update?",
+    "body_delete": "Are You sure, you want to delete? deleted data are unrecoverable! press 'YES' to proceed, 'NO' to cancel."
+  },
+  "LOGIN": {
+    "welcomeMsg": "Please log in ",
+    "welcomeWord": "Welcom to Venalytics",
+    "passwordPlaceholder": "Password",
+    "loginButton": "Login",
+    "passowrdForgetLink": "Forgot password ?"
+  },
+  "sideBarMenu": {
+  },
+  "Admin_Import": {
+  },
+  "Notfound": {
+    "errorMsg": "Sorry, the page does not exist!"
+  },
+  "Unauth": {
+    "errorMsg": "Sorry, you are not authorized"
+  }
+}
