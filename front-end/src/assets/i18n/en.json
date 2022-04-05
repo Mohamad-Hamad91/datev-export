@@ -51,9 +51,11 @@
     "loginButton": "Login",
     "passowrdForgetLink": "Forgot password ?"
   },
-  "sideBarMenu": {
-  },
+  "sideBarMenu": {},
   "Admin_Import": {
+    "searchLabel": "Browse",
+    "uploadLabel": "Upload",
+    "anotherFile": "Add File"
   },
   "Notfound": {
     "errorMsg": "Sorry, the page does not exist!"

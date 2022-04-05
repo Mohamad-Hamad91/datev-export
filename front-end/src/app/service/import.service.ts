@@ -7,21 +7,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ImportService {
 
-  _thisURL = environment.baseUrl + 'admin';
+  _thisURL = environment.baseUrl + 'as-excel';
 
   constructor(private _http: HttpClient) { }
 
 
   uploadFile(formdata) {
-    return this._http.post<any>(this._thisURL + '/header', formdata, {
+    return this._http.post<any>(this._thisURL + '/upload', formdata, {
       reportProgress: true,
       observe: 'events',
       headers: new HttpHeaders({ 'ngsw-bypass': '', responseType: 'text', })
     });
   }
 
-  importPST(formData) {
-    return this._http.post<any>(this._thisURL + '/pst', formData);
+  manipulateFiles() {
+    return this._http.get<Blob>(this._thisURL + '/manipulate', { responseType: 'blob' as 'json' });
   }
 
   importFile(formData) {

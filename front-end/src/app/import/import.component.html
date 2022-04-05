@@ -6,25 +6,26 @@
     <div class="p-grid">
       <p-messages></p-messages>
     </div>
+    <div class="p-sm-12">
+      <div class="progress" [hidden]="progress < 1">
+        <h3>Upload Progress:</h3>
+        <p-progressBar [value]="progress"></p-progressBar>
+      </div>
+    </div>
     <div class="p-sm-12" *ngFor="let f of filesList; let i = index;">
       <br><br>
 
       <div class="p-grid" *ngIf="f.imported!==true">
         <div class="p-sm-12">
-          <div class="progress" [hidden]="progress < 1">
-            <h3>Upload Progress:</h3>
-            <p-progressBar [value]="progress"></p-progressBar>
-          </div>
+
           <p-progressSpinner *ngIf="waiting"></p-progressSpinner>
         </div>
         <div class="p-sm-6 p-lg-3">
           <!-- maxFileSize="100000000" -->
           <p-fileUpload name="excel" mode="advanced" [showUploadButton]="false" customUpload="true"
             (uploadHandler)="UploadHandler($event, f, i)" uploadLabel="Set File" [auto]="true"
-            chooseLabel="{{'Admin_Import.searchLabel' | translate}}"
-            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, .csv, text/plain">
+            chooseLabel="{{'Admin_Import.searchLabel' | translate}}" accept=".csv, text/plain">
             <ng-template pTemplate="content">
-
             </ng-template>
           </p-fileUpload>
           <span *ngIf="f.file">{{f?.file?.name}} - {{ (f?.file?.size / 1024) | number: '1.0-2' }} KB</span>
@@ -33,11 +34,8 @@
           <span class="p-buttonset">
             <button pButton type="button" icon="pi pi-upload" iconPos="left"
               label="{{'Admin_Import.uploadLabel' | translate}}" (click)="uploadFirstStep(f, i)"
-              [disabled]="!f.file || !f.fileType || !f.fileClass || f.uploaded || waiting"
-              class="p-button-raised p-button-rounded"><i class="pi pi-spinner pi-spin" *ngIf="waiting"></i></button>
-            <button pButton type="button" label="{{'Admin_Import.nextLabel' | translate}}"
-              class="p-button-raised p-button-rounded" (click)="goToImport(0, i)"
-              [disabled]="!f.file || !f.fileType || !f.fileClass || !f.uploaded || f.imported"></button>
+              [disabled]="!f.file || waiting || f.uploaded" class="p-button-raised p-button-rounded"><i
+                class="pi pi-spinner pi-spin" *ngIf="waiting"></i></button>
           </span>
           &nbsp;
           <button pButton pRipple [disabled]="!f.uploaded || waiting" type="button" icon="pi pi-times"
@@ -53,8 +51,11 @@
   <div class="p-grid">
     <div class="p-col-10">
       <br><br>
-      <button pButton type="button" icon="pi pi-plus" iconPos="left" label="{{'Admin_Import.anotherFile' | translate}}"
-        (click)="addFormData()"></button>
+      <button pButton type="button" icon="pi pi-plus" class="p-button-raised" iconPos="left"
+        label="{{'Admin_Import.anotherFile' | translate}}" (click)="addFormData()"></button>
+      <button pButton type="button" icon="pi pi-check" iconPos="left" label="{{'Admin_Import.start' | translate}}"
+        (click)="manipulateFiles()" class="p-button-raised"><i class="pi pi-spinner pi-spin"
+          *ngIf="waiting"></i></button>
     </div>
     <div class="p-col-2"></div>
   </div>

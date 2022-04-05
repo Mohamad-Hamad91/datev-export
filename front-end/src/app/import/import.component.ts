@@ -5,6 +5,7 @@ import { ImportService } from "../service/import.service";
 import { FileToImport } from "../model/file-import";
 import { TranslateService } from '@ngx-translate/core';
 import { HttpEventType } from '@angular/common/http';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-import',
@@ -27,9 +28,9 @@ export class ImportComponent implements OnInit {
   //#endregion init vars
 
   constructor(public _translateService: TranslateService, private _messageService: MessageService,
-    private _importService: ImportService, private cdRef: ChangeDetectorRef) {  }
+    private _importService: ImportService, private cdRef: ChangeDetectorRef) { }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { }
   // end of ngOnInit
 
   removeFormData(index: number) {
@@ -42,11 +43,11 @@ export class ImportComponent implements OnInit {
     this.filesList.push(f);
   }
 
-  
+
   deleteFileFromServer(f: FileToImport, index) {
     this.waiting = true;
 
-    const nameOnServer = f?.nameOnServer;
+    const nameOnServer = f?.file.name;
     if (nameOnServer) {
       this._importService
         .deleteFile({ nameOnServer: nameOnServer })
@@ -80,18 +81,10 @@ export class ImportComponent implements OnInit {
   // upload step 1
   uploadFirstStep(f: FileToImport, index) {
     this.waiting = true;
-    // send to back-end
-    // if type excel to excel-head
-    // else if type csv to csv-head
-    // else warn user to select type
-    // get headers orginal name  and name on the server and set them to f
     const file: File = f?.file;
-    const fileType: number = f?.fileType?.value;
-    const local: number = f?.local?.value;
-    const fileClass: number = f?.fileClass?.value;
     const formData: FormData = new FormData();
     if (!!file) {
-      formData.append('excel', file);
+      formData.append('file', file);
     } else {
       this._messageService.add({
         severity: 'warning',
@@ -100,12 +93,6 @@ export class ImportComponent implements OnInit {
       });
       return;
     }
-
-    formData.append('data', JSON.stringify({
-      fileType: fileType,
-      fileClass: fileClass,
-      local: local
-    }));
 
     this._importService
       .uploadFile(formData)
@@ -119,24 +106,13 @@ export class ImportComponent implements OnInit {
             break;
           case HttpEventType.UploadProgress:
             this.progress = Math.round(response.loaded / response.total * 100);
-            // this.progressElm.nativeElement.style.width = +this.progress + '%';
             this.cdRef.detectChanges();
-            // console.log(`Uploaded! ${this.progress}%`);
             break;
           case HttpEventType.Response:
             let res = response.body;
 
             //#region if upload finished
             this.waiting = false;
-            f.fileHeader = new Array();
-            for (let index = 0; index < res.headers.length; index++) {
-              const element = res.headers[index];
-              f.fileHeader.push({ name: element });
-            }
-            // f.fileHeader = res.headers;
-            f.nameOnServer = res.fileName;
-            f.orginalName = res.orginalName;
-            f.defaultTemplate = res.defaultTemplate;
             f.uploaded = true;
             this.currentFileIndex = index;
             // console.dir(this.filesList);
@@ -170,8 +146,32 @@ export class ImportComponent implements OnInit {
   UploadHandler(event, f: FileToImport, index: number) {
     const selectedFiles: FileList = event.files;
     f.file = selectedFiles[0];
+    f.orginalName = f.file.name;
     f.index = index;
   }
 
+
+  manipulateFiles() {
+    this._importService.manipulateFiles()
+      .subscribe(res => {
+        console.log(res);
+        this.waiting = false;
+        this.saveAsExcelFile(res, 'exported');
+      });
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    let EXCEL_TYPE =
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    let EXCEL_EXTENSION = '.xlsx';
+    const d: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE,
+    });
+    // FileSaver.saveAs(file);
+    FileSaver.saveAs(
+      d,
+      fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION
+    );
+  }
 
 }

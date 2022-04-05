@@ -1,0 +1,72 @@
+1000;"Kasse 1";1;3;10;0;0,00;0;0;"Geldkonto";0
+1010;"Kasse 2";1;3;10;0;0,00;0;0;"Geldkonto";0
+1200;"Voba Hf. Sonderkto. 1008 133 471";1;3;10;0;0,00;0;0;"Geldkonto";0
+1201;"Voba Hf. SK ""Transfer"" Kto. 1008 133 481";1;3;10;0;0,00;0;0;"Geldkonto";0
+1210;"Spaka Hf. Sonderkto. 140 045 451";1;3;10;0;0,00;0;0;"Geldkonto";0
+1230;"Sparkasse Hf. Kto. 142 235 258";1;3;10;0;0,00;0;0;"Geldkonto";0
+1235;"Sparkasse Hf. Kto. 140 045 311";1;3;10;0;0,00;0;0;"Geldkonto";0
+1240;"Postbank 477 123 02";1;3;10;0;0,00;0;0;"Geldkonto";0
+1245;"Volksbank Bd.Oeynh. Kto. 194 204 00";1;3;10;0;0,00;0;0;"Geldkonto";0
+1248;"Commerzbank Kto. 244 401 600";1;3;10;0;0,00;0;0;"Geldkonto";0
+1360;"Geldtransit";1;3;10;0;0,00;0;0;"Geldkonto";0
+1588;"Einfuhr-Umsatzsteuer";1;3;35;0;0,00;0;0;"bezahlte Einfuhr-Umsatzst.";0
+1590;"Durchlaufende Posten";1;0;0;0;0,00;0;0;"";0
+1592;"ZE Spaka A-Kto. f. Nachf. Gesellschaft";1;0;0;0;0,00;0;0;"";0
+4020;"Abgelt. EV-Warenbest. p. 28.07.14";3;0;0;0;0,00;0;0;"";0
+4021;"Abgelt. EV-Warenbest. p. 28.07.14 - Ausl";3;0;0;0;0,00;0;0;"";0
+4026;"Abgelt. Sped.-Pfandrecht ""Transpack""";3;0;0;0;0,00;0;0;"";0
+4050;"Wareneinkauf -Inland-";3;0;0;0;0,00;0;0;"";0
+4051;"Wareneinkauf -Ausland- ";3;0;0;0;0,00;0;0;"";0
+4055;"Werkstattbedarf ";3;0;0;0;0,00;0;0;"";0
+4075;"Wareneinkauf ""Boloni"" ";3;0;0;0;0,00;0;0;"";0
+4101;"Miete/Mietnutzung Anlangen + Geräte";0;0;0;0;0,00;0;0;"";0
+4102;"Reinigung";0;0;0;0;0,00;0;0;"";0
+4105;"Kfz-Kosten";0;0;0;0;0,00;0;0;"";0
+4106;"Kfz - Leasing";0;0;0;0;0,00;0;0;"";0
+4113;"Strom/Gas/Wasser";0;0;0;0;0,00;0;0;"";0
+4114;"Heizkosten";0;0;0;0;0,00;0;0;"";0
+4115;"Industrieentsorgung";0;0;0;0;0,00;0;0;"";0
+4117;"Telefon/Internet";0;0;0;0;0,00;0;0;"";0
+4118;"Bürobedarf";0;0;0;0;0,00;0;0;"";0
+4120;"Löhne und Gehälter";0;0;0;0;0,00;0;0;"";0
+4123;"Lohnsteuer";0;0;0;0;0,00;0;0;"";0
+4124;"Sozialversicherungen";0;0;0;0;0,00;0;0;"";0
+4127;"Lohn/Gehaltskosten -Ausland-";0;0;0;0;0,00;0;0;"";0
+4129;"Provisionen -Ausland-";0;0;0;0;0,00;0;0;"";0
+4130;"Sonstige Kosten";0;0;0;0;0,00;0;0;"";0
+4134;"Fremdleistungen (Beratung) ";0;0;0;0;0,00;0;0;"";0
+4136;"Be- und Verwertungskosten (IVG)";0;0;0;0;0,00;0;0;"";0
+4139;"Provisionen -Inland- ";0;0;0;0;0,00;0;0;"";0
+4142;"Rechts-u. Beratungskosten (StB)";0;0;0;0;0,00;0;0;"";0
+4145;"Grundbesitzabgaben";0;0;0;0;0,00;0;0;"";0
+4150;"Nebenkosten Geldverkehr ";0;0;0;0;0,00;0;0;"";0
+4155;"Zinsen und ähnliche Aufwendungen";0;0;0;0;0,00;0;0;"";0
+4161;"Messe- u. Werbekosten";0;0;0;0;0,00;0;0;"";0
+4171;"Versicherungen";0;0;0;0;0,00;0;0;"";0
+4172;"Vermögenshaftpflicht InsO Verwalter";0;0;0;0;0,00;0;0;"";0
+4173;"Vermögenshaftpflicht Gläubigerausschuss";0;0;0;0;0,00;0;0;"";0
+4175;"Reparaturen/Instandhaltungen/Ersatzteile";0;0;0;0;0,00;0;0;"";0
+4181;"Wartung/Hardware/Software";0;0;0;0;0,00;0;0;"";0
+4185;"Bewirtungskosten";0;0;0;0;0,00;0;0;"";0
+4186;"Reisekosten ";0;0;0;0;0,00;0;0;"";0
+4187;"Versandkosten";0;0;0;0;0,00;0;0;"";0
+4188;"Portokosten";0;0;0;0;0,00;0;0;"";0
+8050;"Ford. ZE SK Voba -Inland- v.Antragst. ";8;0;0;0;0,00;0;0;"";0
+8052;"Ford. ZE SK Spaka -Inland- v.Antragst.";8;0;0;0;0,00;0;0;"";0
+8053;"Ford. ZE SK Spaka -Ausland- v.Antragst.";8;0;0;0;0,00;0;0;"";0
+8054;"Ford. ZE Voba -Inland- vor Antragst. ";8;0;0;0;0,00;0;0;"";0
+8055;"Ford. ZE Voba -Ausland- v. Antragst. ";8;0;0;0;0,00;0;0;"";0
+8056;"Ford. ZE Spaka -Inland- v. Antragst. ";8;0;0;0;0,00;0;0;"";0
+8057;"Ford. ZE Spaka -Ausland- v. Antragst. ";8;0;0;0;0,00;0;0;"";0
+8058;"Ford. ZE Kasse -Inland- v.Antragst. ";8;0;0;0;0,00;0;0;"";0
+8060;"Forderungen COFACE Finanz";8;0;0;0;0,00;0;0;"";0
+8065;"Forderungen VR Diskontbank ";8;0;0;0;0,00;0;0;"";0
+8072;"Ford. ZE SK Spaka -Inland ab Antragst.";8;0;0;0;0,00;0;0;"";0
+8073;"Ford. ZE SK Spaka -Ausland- ab Antragst.";8;0;0;0;0,00;0;0;"";0
+8076;"Ford. ZE Spaka Hf. -Inland- ab Antragst.";8;0;0;0;0,00;0;0;"";0
+8077;"Ford. ZE Spaka Hf. -Ausland- ab Antragst";8;0;0;0;0,00;0;0;"";0
+8078;"Ford. ZE Kassen -Inland- ab Antragst. ";8;0;0;0;0,00;0;0;"";0
+8530;"RWK Holding Darl.""Transfergesellsch"" ";8;0;0;0;0,00;0;0;"";0
+8540;"Erst. USt. Zeitraum vor Antragstellung";8;0;0;0;0,00;0;0;"";0
+8550;"Sonst. Erstatt. f.d.Zeit vor Antragst. ";8;0;0;0;0,00;0;0;"";0
+9000;"Saldenvorträge Sachkonten";1;4;97;0;0,00;0;0;"Saldovortrag Sachkonten";0

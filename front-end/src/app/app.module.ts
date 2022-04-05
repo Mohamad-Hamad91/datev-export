@@ -28,6 +28,9 @@ import { SidebarModule } from "primeng-lts/sidebar";
 import { MenubarModule } from "primeng-lts/menubar";
 import {MessagesModule} from 'primeng-lts/messages';
 import {MessageModule} from 'primeng-lts/message';
+import { ProgressSpinnerModule } from 'primeng-lts/progressspinner';
+import { ProgressBarModule } from 'primeng-lts/progressbar';
+import { FileUploadModule } from 'primeng-lts/fileupload';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -67,6 +70,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MenubarModule,
     MessagesModule,
     MessageModule,
+    ProgressSpinnerModule,
+    ProgressBarModule,
+    FileUploadModule
   ],
   providers: [MessageService, ConfirmationService, AuthGuard, {
     provide: LOCALE_ID,
