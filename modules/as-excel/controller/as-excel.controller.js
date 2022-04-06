@@ -2,10 +2,12 @@ const fs = require("fs");
 const path = require('path');
 const Excel = require('exceljs');
 const csv = require('csv-parser');
+const parseDecimalNumber = require('parse-decimal-number');
+const cldr = require('cldr');
 
 module.exports.deleteFileFromServier = async function (req, res) {
     let message = "file not found";
-    let name = path.join(__dirname, '../', './files/' + req.body.nameOnServer);
+    let name = path.join(__dirname, '../', './files/' + req.body.nameOnServer?.toLowerCase());
     // console.log(name);
     if (req.body.nameOnServer) {
         fs.unlinkSync(name);
@@ -20,7 +22,7 @@ module.exports.manipulateFiles = async function (req, res) {
     const workbookReader = new Excel.Workbook();
     //#region get files meta
     let filesMeta = [];
-    let indexPath = path.join(__dirname, '../', './files/Index.csv');
+    let indexPath = path.join(__dirname, '../', './files/index.csv');
     const indexWorksheet = await workbookReader.csv.readFile(indexPath);
     indexWorksheet.eachRow({ includeEmpty: true }, function (row, rowNumber) {
         // console.log("Row " + rowNumber + " = " + JSON.stringify(row.values));
@@ -63,11 +65,14 @@ module.exports.manipulateFiles = async function (req, res) {
     workbookOut.lastPrinted = new Date();
     //#endregion output file
 
+    
+    // keep the content of Sachkontenstamm.csv in the ram to search in
+    let Sachkontenstamm = [];
     // for each file in the index file 
     for (let i = 0; i < filesMeta.length; i++) {
         const thisFile = filesMeta[i];
 
-        filePath = path.join(__dirname, '../', './files/' + thisFile.name);
+        let filePath = path.join(__dirname, '../', './files/' + thisFile.name?.toLowerCase());
         try {
             const errAccess = await fs.promises.access(filePath, fs.constants.R_OK);
             if (errAccess) console.log(`The file ${thisFile.name} not found!`);
@@ -84,9 +89,11 @@ module.exports.manipulateFiles = async function (req, res) {
                 for await (const row of parser) {
                     let rowValues = [];
                     for (const key in row) {
-                        rowValues.push(row[key]);
+                        rowValues.push(row[key]?.trim());
                     }
                     worksheet.addRow(rowValues, 'i+').commit();
+                    if (thisFile.name?.toLowerCase() == 'sachkontenstamm.csv')
+                        Sachkontenstamm.push({ accountNumber: row[0], accountName: row[1] });
                 }
             }
         } catch (error) {
@@ -94,6 +101,63 @@ module.exports.manipulateFiles = async function (req, res) {
         }
     }
 
+    // add the new sheet
+
+    let filePath = path.join(__dirname, '../', './files/kontobuchungen.csv');
+    try {
+        const errAccess = await fs.promises.access(filePath, fs.constants.R_OK);
+        if (errAccess) console.log(`The file kontobuchungen.csv not found!`);
+        else {
+            // file name = kontobuchungen.csv
+            // sheetName: 'buchungen'
+            let originalMeta = filesMeta.find(rec => rec.name?.toLowerCase() === 'kontobuchungen.csv');
+            // index of 'kontonummer des kontos'
+            let indexOfKonto = originalMeta.fields.findIndex(rec => rec === 'Kontonummer des Kontos');
+            originalMeta.fields.splice(indexOfKonto + 1, 0, 'Kontoname');
+            // index of 'kontonummer des gegenkontos'
+            let indexOfGKName = originalMeta.fields.findIndex(rec => rec === 'Kontonummer des Gegenkontos');
+            originalMeta.fields.splice(indexOfGKName + 1, 0, 'GKName');
+            // index of 'Umsatz Haben'
+            let indexOfHaben = originalMeta.fields.findIndex(rec => rec === 'Umsatz Haben');
+            let indexOfSoll = originalMeta.fields.findIndex(rec => rec === 'Umsatz Soll');
+            originalMeta.fields.splice(indexOfHaben + 1, 0, 'Saldo');
+
+            // create a sheet for the file
+            const worksheet = workbookOut.addWorksheet('buchungen');
+            // set the sheet header
+            worksheet.columns = originalMeta.fields?.map(field => ({ header: field, key: field }));
+
+            // open the smaller file in buffer to search
+            // open the larger file in a stream
+            const parser = fs.createReadStream(filePath, { encoding: 'utf8' })
+                .pipe(csv({ separator: ';', encoding: "utf8", headers: false }));
+
+                const options = cldr.extractNumberSymbols('de_DE');
+    const decimalParser = parseDecimalNumber.withOptions(options);
+
+            // find and calc 3 values
+            for await (const row of parser) {
+                let rowValues = [];
+                for (const key in row) {
+                    rowValues.push(row[key]);
+                }
+                // get the account name
+                let name = Sachkontenstamm.find(val => val.accountNumber == rowValues[indexOfKonto])?.accountName;
+                let GkName = Sachkontenstamm.find(val => val.accountNumber == rowValues[indexOfGKName])?.accountName;
+                rowValues.splice(indexOfKonto + 1, 0, name);
+                rowValues.splice(indexOfGKName + 1, 0, GkName);
+                let Soll = rowValues[indexOfSoll];
+                let Haben = rowValues[indexOfHaben];
+                rowValues.splice(indexOfHaben + 1, 0, decimalParser(Soll) - decimalParser(Haben));
+
+                worksheet.addRow(rowValues, 'i+').commit();
+            }
+
+        }
+
+    } catch (error) {
+        // do nothing
+    }
     await workbookOut.commit();
     console.log('finished');
     res.download(resultPath);

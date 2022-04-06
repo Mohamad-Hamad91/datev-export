@@ -11,7 +11,7 @@ var storage = multer.diskStorage({
         callback(null, './modules/as-excel/files/');
     },
     filename: function (req, file, callback) {
-        callback(null, file.originalname);
+        callback(null, file.originalname?.toLowerCase());
     }
 });
 
