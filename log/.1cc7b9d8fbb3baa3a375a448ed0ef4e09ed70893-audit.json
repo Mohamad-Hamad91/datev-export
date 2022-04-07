@@ -64,6 +64,11 @@
             "date": 1649253813458,
             "name": "log/import-log-2022-04-06-17.log",
             "hash": "527b26ea59d85eb3a660386f93e68be8"
+        },
+        {
+            "date": 1649345199017,
+            "name": "log/import-log-2022-04-07-18.log",
+            "hash": "0bc6399bae7a9765e79bbed3644eb97c"
         }
     ],
     "hashType": "md5"

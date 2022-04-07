@@ -25,12 +25,16 @@ export class ImportComponent implements OnInit {
   // which file we manipulated now
   currentFileIndex: number = -1;
   progress: number = 0;
+
+  choosed: boolean = false;
   //#endregion init vars
 
   constructor(public _translateService: TranslateService, private _messageService: MessageService,
     private _importService: ImportService, private cdRef: ChangeDetectorRef) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.filesList.push(new FileToImport());
+  }
   // end of ngOnInit
 
   removeFormData(index: number) {
@@ -148,6 +152,7 @@ export class ImportComponent implements OnInit {
     f.file = selectedFiles[0];
     f.orginalName = f.file.name;
     f.index = index;
+    this.choosed = true;
   }
 
 

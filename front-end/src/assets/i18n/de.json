@@ -56,7 +56,8 @@
   "Admin_Import": {
     "searchLabel": "Browse",
     "uploadLabel": "Upload",
-    "anotherFile": "Add File"
+    "anotherFile": "Add File",
+    "start": "Start"
   },
   "Notfound": {
     "errorMsg": "Sorry, die Seite ist nicht vorhanden"

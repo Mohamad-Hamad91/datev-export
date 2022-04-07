@@ -65,7 +65,7 @@ module.exports.manipulateFiles = async function (req, res) {
     workbookOut.lastPrinted = new Date();
     //#endregion output file
 
-    
+
     // keep the content of Sachkontenstamm.csv in the ram to search in
     let Sachkontenstamm = [];
     // for each file in the index file 
@@ -132,8 +132,8 @@ module.exports.manipulateFiles = async function (req, res) {
             const parser = fs.createReadStream(filePath, { encoding: 'utf8' })
                 .pipe(csv({ separator: ';', encoding: "utf8", headers: false }));
 
-                const options = cldr.extractNumberSymbols('de_DE');
-    const decimalParser = parseDecimalNumber.withOptions(options);
+            const options = cldr.extractNumberSymbols('de_DE');
+            const decimalParser = parseDecimalNumber.withOptions(options);
 
             // find and calc 3 values
             for await (const row of parser) {
@@ -143,8 +143,8 @@ module.exports.manipulateFiles = async function (req, res) {
                 }
                 // get the account name
                 let name = Sachkontenstamm.find(val => val.accountNumber == rowValues[indexOfKonto])?.accountName;
-                let GkName = Sachkontenstamm.find(val => val.accountNumber == rowValues[indexOfGKName])?.accountName;
                 rowValues.splice(indexOfKonto + 1, 0, name);
+                let GkName = Sachkontenstamm.find(val => val.accountNumber == rowValues[indexOfGKName])?.accountName;
                 rowValues.splice(indexOfGKName + 1, 0, GkName);
                 let Soll = rowValues[indexOfSoll];
                 let Haben = rowValues[indexOfHaben];
@@ -160,5 +160,22 @@ module.exports.manipulateFiles = async function (req, res) {
     }
     await workbookOut.commit();
     console.log('finished');
+    //#region Delete files
+    for (let i = 0; i < filesMeta.length; i++) {
+        const thisFile = filesMeta[i];
+        let filePath = path.join(__dirname, '../', './files/' + thisFile.name?.toLowerCase());
+        try {
+            await fs.promises.unlink(filePath);
+        } catch (error) {
+            // do nothing
+        }
+    }
+    try {
+        let filePath = path.join(__dirname, '../', './files/index.csv');
+        await fs.promises.unlink(filePath);
+    } catch (error) {
+        // do nothing
+    }
+    //#endregion delete files
     res.download(resultPath);
 }
