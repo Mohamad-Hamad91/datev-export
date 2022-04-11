@@ -4,6 +4,7 @@ const Excel = require('exceljs');
 const csv = require('csv-parser');
 const parseDecimalNumber = require('parse-decimal-number');
 const cldr = require('cldr');
+const utf8 = require('utf8');
 
 module.exports.deleteFileFromServier = async function (req, res) {
     let message = "file not found";
@@ -89,7 +90,7 @@ module.exports.manipulateFiles = async function (req, res) {
                 for await (const row of parser) {
                     let rowValues = [];
                     for (const key in row) {
-                        rowValues.push(row[key]?.trim());
+                        rowValues.push(utf8.encode(row[key]?.trim()));
                     }
                     worksheet.addRow(rowValues, 'i+').commit();
                     if (thisFile.name?.toLowerCase() == 'sachkontenstamm.csv')

@@ -22,19 +22,22 @@
         </div>
         <div class="p-sm-6 p-lg-3">
           <!-- maxFileSize="100000000" -->
-          <p-fileUpload name="excel" mode="advanced" [showUploadButton]="false" customUpload="true"
+          <p-fileUpload name="file[]" mode="advanced" [showUploadButton]="false" customUpload="true"
             (uploadHandler)="UploadHandler($event, f, i)" uploadLabel="Set File" [auto]="true"
-            chooseLabel="{{'Admin_Import.searchLabel' | translate}}" accept=".csv, text/plain">
+            chooseLabel="{{'Admin_Import.searchLabel' | translate}}" accept=".csv, text/plain" multiple="multiple">
             <ng-template pTemplate="content">
             </ng-template>
           </p-fileUpload>
-          <span *ngIf="f.file">{{f?.file?.name}} - {{ (f?.file?.size / 1024) | number: '1.0-2' }} KB</span>
+          <span *ngIf="f.files?.length">
+            <p *ngFor="let file of f.files">
+              {{file?.name}} - {{ (file?.size / 1024) | number: '1.0-2' }} KB</p>
+          </span>
         </div>
         <div class="p-sm-6 p-lg-3">
           <span class="p-buttonset">
             <button pButton type="button" icon="pi pi-upload" iconPos="left"
               label="{{'Admin_Import.uploadLabel' | translate}}" (click)="uploadFirstStep(f, i)"
-              [disabled]="!f.file || waiting || f.uploaded" class="p-button-raised p-button-rounded"><i
+              [disabled]="!f.files || waiting || f.uploaded" class="p-button-raised p-button-rounded"><i
                 class="pi pi-spinner pi-spin" *ngIf="waiting"></i></button>
           </span>
           &nbsp;
@@ -53,10 +56,9 @@
       <br><br>
       <button pButton type="button" icon="pi pi-plus" class="p-button-raised" iconPos="left"
         label="{{'Admin_Import.anotherFile' | translate}}" (click)="addFormData()"></button>
-        &nbsp;&nbsp;
+      &nbsp;&nbsp;
       <button pButton type="button" icon="pi pi-check" iconPos="left" label="{{'Admin_Import.start' | translate}}"
-        (click)="manipulateFiles()" class="p-button-raised"
-        [disabled]="!choosed"><i class="pi pi-spinner pi-spin"
+        (click)="manipulateFiles()" class="p-button-raised" [disabled]="!choosed"><i class="pi pi-spinner pi-spin"
           *ngIf="waiting"></i></button>
     </div>
     <div class="p-col-2"></div>

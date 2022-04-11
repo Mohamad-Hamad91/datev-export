@@ -85,10 +85,12 @@ export class ImportComponent implements OnInit {
   // upload step 1
   uploadFirstStep(f: FileToImport, index) {
     this.waiting = true;
-    const file: File = f?.file;
+    const files: FileList = f?.files;
     const formData: FormData = new FormData();
-    if (!!file) {
-      formData.append('file', file);
+    if (!!files?.length) {
+      for (let i = 0; i < files.length; i++) {
+        formData.append(i.toString(), files[i]);
+      }
     } else {
       this._messageService.add({
         severity: 'warning',
@@ -149,8 +151,9 @@ export class ImportComponent implements OnInit {
   // when select a file
   UploadHandler(event, f: FileToImport, index: number) {
     const selectedFiles: FileList = event.files;
-    f.file = selectedFiles[0];
-    f.orginalName = f.file.name;
+    // f.file = selectedFiles[0];
+    f.files = selectedFiles;
+    // f.orginalName = f.file.name;
     f.index = index;
     this.choosed = true;
   }

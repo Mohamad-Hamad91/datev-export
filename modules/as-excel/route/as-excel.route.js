@@ -25,7 +25,7 @@ router
     .route('/upload')
     .post(passport.authenticate('jwt', {
         session: false
-    }), authorization.authorize('Admin'), uploadfiles.single('file'), (req, res) => res.status(200).json('ok'));
+    }), authorization.authorize('Admin'), uploadfiles.any(), (req, res) => res.status(200).json('ok'));
 
 
 router

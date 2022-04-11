@@ -8,6 +8,7 @@ export class FileToImport {
     orginalName: string;
     nameOnServer: string;
     file: File;
+    files: FileList;
     index: number;
     uploaded: boolean;
     imported: boolean;
