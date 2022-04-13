@@ -54,9 +54,9 @@
     "logout": "Logout"
   },
   "Admin_Import": {
-    "searchLabel": "Browse",
-    "uploadLabel": "Upload",
-    "anotherFile": "Add File",
+    "searchLabel": "Durchsuche",
+    "uploadLabel": "Hochladen",
+    "anotherFile": "Datei hinzufügen",
     "start": "Start"
   },
   "Notfound": {
