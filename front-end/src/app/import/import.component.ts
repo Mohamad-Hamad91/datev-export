@@ -160,12 +160,13 @@ export class ImportComponent implements OnInit {
 
 
   manipulateFiles() {
+    this.waiting = true;
     this._importService.manipulateFiles()
       .subscribe(res => {
-        console.log(res);
+        // console.log(res);
         this.waiting = false;
         this.saveAsExcelFile(res, 'exported');
-      });
+      }, er => this.waiting = false);
   }
 
   saveAsExcelFile(buffer: any, fileName: string): void {
